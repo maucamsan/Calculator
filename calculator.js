@@ -13,26 +13,25 @@ numpadArr.forEach(but => {but.addEventListener('click', () =>
 
 
 
-console.log(numpad);
 
-let Calculator = {
-    Add: function(a, b) {
+function Calculator() {
+    this.Add = function(a, b) {
         return a+b
     },
 
-    Subtract: function(a, b){
+    this.Subtract = function(a, b){
         return a - b;
     },
 
-    Multiply: function(a, b){
+    this.Multiply = function(a, b){
         return a * b;
     },
 
-    Divide: function(a, b){
+    this.Divide = function(a, b){
         return b !== 0 ? a/b : undefined;
     },
 
-    Operate: function(operator, a, b){
+    this.Operate = function(operator, a, b){
         switch(operator){
             case '+':
                 this.Add(a, b)
