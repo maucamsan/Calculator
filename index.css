@@ -9,7 +9,7 @@ body{
 .calculatorContainer{
     background-color: rgb(55, 137, 105);
     width: 400px;
-    padding: 100px;
+    padding: 50px;
     margin: 400px auto;
     display: flex;
     flex-direction: column;
@@ -29,19 +29,21 @@ body{
     flex-grow: 1;
     display:grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
 }
 
 .operatorsContainer{
     flex-grow: 1;
     display:flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .extraOperators{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
 }
 
 .extraButtons{
