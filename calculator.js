@@ -1,36 +1,56 @@
-function Add(a, b){
-    return a + b;
-}
+let numpad = document.querySelectorAll(".numpadValue");
+let numpadArr = Array.from(numpad);
 
-function Subtract(a, b){
-    return a - b;
-}
-
-function Multiply(a, b){
-    return a * b;
-}
-
-function Divide(a, b){
-   
-    return b !== 0 ? a/b : undefined
-}
+let display = document.querySelector("#display > input");
 
 
-function Operate(operator, a, b){
-    switch(operator){
-        case '+':
-            Add(a, b)
-            break;
-        case '-':
-            Subtract(a, b)
-            break;
-        case '*':
-            Multiply(a, b)
-            break;
-        case '/':
-            Divide(a, b)
-            break;
-        default:
-            break;
+numpadArr.forEach(but => {but.addEventListener('click', () => 
+    
+    display.value += (but.textContent)
+    )
+
+});
+
+
+
+console.log(numpad);
+
+let Calculator = {
+    Add: function(a, b) {
+        return a+b
+    },
+
+    Subtract: function(a, b){
+        return a - b;
+    },
+
+    Multiply: function(a, b){
+        return a * b;
+    },
+
+    Divide: function(a, b){
+        return b !== 0 ? a/b : undefined;
+    },
+
+    Operate: function(operator, a, b){
+        switch(operator){
+            case '+':
+                this.Add(a, b)
+                break;
+            case '-':
+                this.Subtract(a, b)
+                break;
+            case '*':
+                this.Multiply(a, b)
+                break;
+            case '/':
+                this.Divide(a, b)
+                break;
+            default:
+                break;
+        }
     }
+
+
 }
+
