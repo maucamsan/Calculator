@@ -9,6 +9,15 @@ let display = document.querySelector("#display > input");
 let otherButtons = document.querySelectorAll(".extraButtons");
 let otherButsArr = Array.from(otherButtons);
 
+let signedOperator = document.querySelector(".signedOperator");
+
+signedOperator.addEventListener("click", function(){
+    if (display.value !== '')
+    {
+        display.value = parseFloat(display.value) * -1;
+    }
+})
+
 let firstNumber = 0;
 let secondNumber = 0;
 let currentOperator = '';
@@ -54,32 +63,58 @@ function operate(operator, a, b) {
 }
 
 
-console.log(operate('+', 2, 3))
-console.log(Add(3, 3))
+let operatorPressed = false;
+let first = true;
 
-
-
-numpadArr.forEach(but => {but.addEventListener('click', () => display.value += (but.textContent) ) });
+numpadArr.forEach(but => {but.addEventListener('click', () => {
+    if (operatorPressed)
+    {
+        display.value = ''
+        operatorPressed = false;
+    }
+    display.value += (but.textContent)
+    if (!first){
+        secondNumber = display.value;
+        console.log("Second : ", secondNumber)
+    }
+} ) });
 
 operatorArr.forEach(but => {but.addEventListener('click', function() {
-    firstNumber = parseInt(display.value);
-    currentOperator = but.textContent;
-    display.value = 0;
+    if (first){
+        firstNumber = parseFloat(display.value);
+        currentOperator = but.textContent;
+        operatorPressed = true;
+        first = false;
+    }
+    else{
+        if (display.value === '') return;
+        firstNumber = (operate(currentOperator, parseFloat(firstNumber), parseFloat(secondNumber)));
+        console.log("First: ", firstNumber)
+        currentOperator = but.textContent;
+        display.value = firstNumber;
+        console.log(firstNumber)
+        operatorPressed = true;
+        //first = true;
+    }
+    
     })
 });
 
 otherButsArr.forEach(but => {but.addEventListener('click', function(){
     if (but.id === "equal"){
-        secondNumber = parseInt(display.value);
-        console.log(currentOperator, firstNumber, secondNumber)
+        if (display.value === '') return;
+        secondNumber = parseFloat(display.value);
         display.value = (operate(currentOperator, firstNumber, secondNumber));
-        console.log(display.value)
+        operatorPressed = true;
+        first = true;
     }
     else{
+        first = true;
         firstNumber = 0;
         secondNumber = 0;
         currentOperator = '';
-        display.value = 0;
+        display.value = '';
+        display.setAttribute('placeholder', 0);
     }
 })})
     
