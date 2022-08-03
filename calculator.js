@@ -5,6 +5,7 @@ let operatorsPad = document.querySelectorAll(".operatorButton");
 let operatorArr = Array.from(operatorsPad);
 
 let display = document.querySelector("#display > input");
+// display.value = parseFloat(0);
 
 let otherButtons = document.querySelectorAll(".extraButtons");
 let otherButsArr = Array.from(otherButtons);
@@ -81,6 +82,7 @@ numpadArr.forEach(but => {but.addEventListener('click', () => {
 
 operatorArr.forEach(but => {but.addEventListener('click', function() {
     if (first){
+        if (display.value === '') display.value = 0
         firstNumber = parseFloat(display.value);
         currentOperator = but.textContent;
         operatorPressed = true;
